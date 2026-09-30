@@ -1,57 +1,9 @@
-const VISITOR_NAMESPACE = 'modernlife101';
-const STATS_ID = 'modernlife-visitor-stats';
-
-function ensureVisitorStats() {
-  if (document.getElementById(STATS_ID)) return;
-
-  const stats = document.createElement('div');
-  stats.id = STATS_ID;
-  stats.className = 'modernlife-visitor-stats';
-  stats.innerHTML = `
-    <div class="modernlife-stat">
-      <span class="modernlife-label">Total</span>
-      <strong id="modernlife-total">--</strong>
-    </div>
-    <div class="modernlife-stat">
-      <span class="modernlife-label">Today / 今日</span>
-      <strong id="modernlife-today">--</strong>
-    </div>
-  `;
-
-  const main = document.querySelector('main');
-  if (main) {
-    main.parentNode.insertBefore(stats, main);
-  } else {
-    document.body.prepend(stats);
-  }
-}
-
-async function updateVisitorStats() {
-  ensureVisitorStats();
-
-  const totalNode = document.getElementById('modernlife-total');
-  const todayNode = document.getElementById('modernlife-today');
-  const todayKey = `traffic-${new Date().toISOString().slice(0, 10)}`;
-
-  try {
-    const [totalRes, todayRes] = await Promise.all([
-      fetch(`https://api.countapi.xyz/hit/${VISITOR_NAMESPACE}/traffic-total`),
-      fetch(`https://api.countapi.xyz/hit/${VISITOR_NAMESPACE}/${todayKey}`)
-    ]);
-
-    const [totalData, todayData] = await Promise.all([totalRes.json(), todayRes.json()]);
-
-    if (totalNode) totalNode.textContent = Number(totalData.value || 0).toLocaleString();
-    if (todayNode) todayNode.textContent = Number(todayData.value || 0).toLocaleString();
-  } catch (error) {
-    console.warn('Visitor stats unavailable:', error);
-    if (totalNode) totalNode.textContent = 'n/a';
-    if (todayNode) todayNode.textContent = 'n/a';
-  }
-}
-
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', updateVisitorStats);
-} else {
-  updateVisitorStats();
-}
+const $=id=>document.getElementById(id);
+let data,category='all',read=new Set();try{read=new Set(JSON.parse(localStorage.getItem('modernlife-read')||'[]'));}catch{}
+const node=(tag,text,className)=>{const e=document.createElement(tag);if(text)e.textContent=text;if(className)e.className=className;return e;};
+function card(item,featured=false){const a=node('a',null,featured?'feature':'card');a.href=item.url;const w=data.worlds.find(w=>w.id===item.world);a.append(node('small',`${item.id} / ${w.icon} ${w.name}`));a.append(node('h3',item.title));a.append(node('p',item.summary));return a;}
+function listing(){const q=$('search').value.trim().toLowerCase();const items=data.items.filter(x=>(category==='all'||x.world===category)&&`${x.title} ${x.summary} ${data.worlds.find(w=>w.id===x.world).name}`.toLowerCase().includes(q));$('articles').replaceChildren(...items.map(item=>card(item)));$('empty').hidden=items.length!==0;}
+function filter(name){category=name;$('filter-all').classList.toggle('active',name==='all');$('filter-know').classList.toggle('active',name==='know');$('filter-eco').classList.toggle('active',name==='eco');$('filter-skill').classList.toggle('active',name==='skill');listing();}
+function route(){const hash=location.hash.slice(1);if(hash==='random'){let previous;try{previous=sessionStorage.getItem('modernlife-last');}catch{}const candidates=data.items.filter(x=>x.id!==previous);const item=candidates[Math.floor(Math.random()*candidates.length)];if(item){sessionStorage.setItem('modernlife-last',item.id);location.hash='';location.href=item.url;return;}}if(hash==='learn'){document.querySelector('#learn').scrollIntoView({behavior:'smooth'});location.hash='';return;}if(hash&&!document.getElementById(hash)){const target=data.items.find(x=>x.id===hash);if(target){location.href=target.url;return;}}}
+fetch('data.json').then(r=>{if(!r.ok)throw Error('加载失败');return r.json();}).then(d=>{data=d;$('featured').replaceChildren(...['013','011','022'].map(id=>card(data.items.find(x=>x.id===id),true)));listing();route();}).catch(err=>{$('empty').hidden=false;$('empty').textContent=err.message;});
+$('search').addEventListener('input',listing);$('filter-all').addEventListener('click',()=>filter('all'));$('filter-know').addEventListener('click',()=>filter('know'));$('filter-eco').addEventListener('click',()=>filter('eco'));$('filter-skill').addEventListener('click',()=>filter('skill'));document.querySelectorAll('.back').forEach(a=>a.addEventListener('click',()=>{location.hash='learn';}));$('mark').addEventListener('click',()=>{const id=$('reader-meta').dataset.id;read.add(id);try{localStorage.setItem('modernlife-read',JSON.stringify([...read]));}catch{}const item=data.items.find(x=>x.id===id);if(item)location.href=item.url;});window.addEventListener('hashchange',route);
