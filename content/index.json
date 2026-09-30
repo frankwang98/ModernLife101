@@ -124,7 +124,7 @@
     "title": "同步为什么不等于备份？",
     "summary": "同步让多处保持一致，备份让你能够回到之前的状态。",
     "world": "cloud",
-    "minutes": 2,
+    "minutes": 3,
     "related": [
       "017",
       "012"
@@ -148,7 +148,7 @@
     "title": "手机丢了，你还能登录自己的账号吗？",
     "summary": "登录恢复需要一条不依赖那部手机的备用路径。",
     "world": "identity",
-    "minutes": 2,
+    "minutes": 3,
     "related": [
       "014",
       "015"
@@ -256,7 +256,7 @@
     "title": "GPS 为什么不需要联网也能定位？",
     "summary": "接收卫星信号并计算位置，本身不要求连接 Internet。",
     "world": "space",
-    "minutes": 2,
+    "minutes": 3,
     "related": [
       "023",
       "001"

@@ -53,3 +53,5 @@
 ## 维护方式
 
 所有 Markdown 是内容源。README 是策展入口；Pages 是阅读与随机探索入口。先修质量，再扩数量；选题建议不代表已完成文章。
+
+构建会生成每篇独立 HTML 页面、中文分享封面与 sitemap。Linux 安装 `fonts-noto-cjk`，其他系统用 `CJK_FONT` 指向可用中文字体；`SITE_URL` 可覆盖部署根地址。生成目录无需手工提交。
