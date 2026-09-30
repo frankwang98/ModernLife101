@@ -1,7 +1,57 @@
-const $=id=>document.getElementById(id);
-let data,category='all',read=new Set();try{read=new Set(JSON.parse(localStorage.getItem('modernlife-read')||'[]'));}catch{}
-const node=(tag,text,className)=>{const e=document.createElement(tag);if(text)e.textContent=text;if(className)e.className=className;return e;};
-function card(item,featured=false){const a=node('a',null,featured?'feature':'card');a.href=item.url;const w=data.worlds.find(w=>w.id===item.world);a.append(node('small',`${item.id} / ${w.icon} ${w.name}`,featured?'':'meta'),node('h3',item.title),node('p',item.summary));if(!featured)a.append(node('span',read.has(item.id)?'✓ 读过 · 再看看':`约 ${item.minutes} min · 走进去 ↗`,'bottom'));return a;}
-function listing(){const q=$('search').value.trim().toLowerCase();const items=data.items.filter(x=>(category==='all'||x.world===category)&&`${x.title} ${x.summary} ${data.worlds.find(w=>w.id===x.world).description}`.toLowerCase().includes(q));$('articles').replaceChildren(...items.map(x=>card(x)));$('count').textContent=`${items.length} 个问题 / ${read.size} 篇读过`;$('empty').hidden=!!items.length;}
-function route(){const hash=location.hash.slice(1);if(hash==='random'){let previous;try{previous=sessionStorage.getItem('modernlife-last');}catch{}const candidates=data.items.filter(x=>x.id!==previous);const item=candidates[Math.floor(Math.random()*candidates.length)];try{sessionStorage.setItem('modernlife-last',item.id);}catch{}location.assign(item.url);return;}if(hash.startsWith('article/')){const item=data.items.find(x=>x.id===hash.split('/')[1]);if(item){location.replace(item.url);return;}if(!item){$('status').hidden=false;$('status').textContent='这个问题还没写好。请从问题集选择。';$('reader').hidden=true;$('home').hidden=false;return;}$('status').hidden=true;$('home').hidden=true;$('reader').hidden=false;$('reader-meta').textContent=`${data.worlds.find(w=>w.id===item.world).name} / 约 ${item.minutes} min / 更新 ${item.verified}`;$('article-content').innerHTML=item.html;$('edit').href=item.source;$('mark').textContent=read.has(item.id)?'✓ 已读 · 取消标记':'标记读过';$('mark').onclick=()=>{read.has(item.id)?read.delete(item.id):read.add(item.id);try{localStorage.setItem('modernlife-read',JSON.stringify([...read]));}catch{}route();};document.title=`${item.title} · ModernLife101`;window.scrollTo(0,0);}else{$('home').hidden=false;$('reader').hidden=true;$('status').hidden=true;document.title='ModernLife101 · 现代世界生存与探索指南';listing();if(['learn','explore'].includes(hash))$(hash).scrollIntoView();else window.scrollTo(0,0);}}
-fetch('data.json').then(r=>{if(!r.ok)throw Error('加载失败');return r.json();}).then(d=>{data=d;$('featured').replaceChildren(...['013','011','022'].map(id=>card(data.items.find(x=>x.id===id),true)));const buttons=[{id:'all',icon:'',name:'全部'},...data.worlds].map(w=>{const b=node('button',`${w.icon} ${w.name}`);b.type='button';b.setAttribute('aria-pressed',w.id===category);b.onclick=()=>{category=w.id;for(const e of $('filters').children)e.setAttribute('aria-pressed',e===b);listing();};return b;});$('filters').replaceChildren(...buttons);$('worldlinks').replaceChildren(...data.explore.map(x=>{const a=node('a',null,'worldlink');a.href=x.url;a.target='_blank';a.rel='noopener noreferrer';const copy=node('div');copy.append(node('h3',x.title),node('p',`${x.name} · ${x.note}`));a.append(node('span',x.icon),copy,node('span','↗'));return a;}));$('search').oninput=listing;window.addEventListener('hashchange',route);route();}).catch(()=>{$('status').hidden=false;$('status').textContent='内容暂时没有加载成功。可以刷新，或到 GitHub 阅读 Markdown 原文。';});
+const VISITOR_NAMESPACE = 'modernlife101';
+const STATS_ID = 'modernlife-visitor-stats';
+
+function ensureVisitorStats() {
+  if (document.getElementById(STATS_ID)) return;
+
+  const stats = document.createElement('div');
+  stats.id = STATS_ID;
+  stats.className = 'modernlife-visitor-stats';
+  stats.innerHTML = `
+    <div class="modernlife-stat">
+      <span class="modernlife-label">Total</span>
+      <strong id="modernlife-total">--</strong>
+    </div>
+    <div class="modernlife-stat">
+      <span class="modernlife-label">Today / 今日</span>
+      <strong id="modernlife-today">--</strong>
+    </div>
+  `;
+
+  const main = document.querySelector('main');
+  if (main) {
+    main.parentNode.insertBefore(stats, main);
+  } else {
+    document.body.prepend(stats);
+  }
+}
+
+async function updateVisitorStats() {
+  ensureVisitorStats();
+
+  const totalNode = document.getElementById('modernlife-total');
+  const todayNode = document.getElementById('modernlife-today');
+  const todayKey = `traffic-${new Date().toISOString().slice(0, 10)}`;
+
+  try {
+    const [totalRes, todayRes] = await Promise.all([
+      fetch(`https://api.countapi.xyz/hit/${VISITOR_NAMESPACE}/traffic-total`),
+      fetch(`https://api.countapi.xyz/hit/${VISITOR_NAMESPACE}/${todayKey}`)
+    ]);
+
+    const [totalData, todayData] = await Promise.all([totalRes.json(), todayRes.json()]);
+
+    if (totalNode) totalNode.textContent = Number(totalData.value || 0).toLocaleString();
+    if (todayNode) todayNode.textContent = Number(todayData.value || 0).toLocaleString();
+  } catch (error) {
+    console.warn('Visitor stats unavailable:', error);
+    if (totalNode) totalNode.textContent = 'n/a';
+    if (todayNode) todayNode.textContent = 'n/a';
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', updateVisitorStats);
+} else {
+  updateVisitorStats();
+}
