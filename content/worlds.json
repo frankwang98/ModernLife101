@@ -1,0 +1,62 @@
+[
+  {
+    "id": "internet",
+    "icon": "🌐",
+    "name": "Internet",
+    "description": "世界是怎么连接起来的"
+  },
+  {
+    "id": "communication",
+    "icon": "📱",
+    "name": "Communication",
+    "description": "手机如何连接世界"
+  },
+  {
+    "id": "money",
+    "icon": "💳",
+    "name": "Money",
+    "description": "钱是怎么流动的"
+  },
+  {
+    "id": "cloud",
+    "icon": "☁️",
+    "name": "Cloud",
+    "description": "数据到底在哪里"
+  },
+  {
+    "id": "identity",
+    "icon": "🔐",
+    "name": "Identity",
+    "description": "你如何证明你是你"
+  },
+  {
+    "id": "digital-life",
+    "icon": "📷",
+    "name": "Digital Life",
+    "description": "保存自己的数字人生"
+  },
+  {
+    "id": "transportation",
+    "icon": "✈️",
+    "name": "Transportation",
+    "description": "人和货物如何跨越世界"
+  },
+  {
+    "id": "space",
+    "icon": "🛰️",
+    "name": "Space",
+    "description": "头顶正在发生什么"
+  },
+  {
+    "id": "infrastructure",
+    "icon": "⚡",
+    "name": "Infrastructure",
+    "description": "现代城市为什么能运转"
+  },
+  {
+    "id": "ai",
+    "icon": "🤖",
+    "name": "AI",
+    "description": "AI 时代如何判断与行动"
+  }
+]

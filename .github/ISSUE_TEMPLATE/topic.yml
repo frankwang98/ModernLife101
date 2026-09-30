@@ -1,0 +1,19 @@
+name: 分享一个好问题
+description: 无需准备答案，告诉我们你的好奇。
+title: "[选题] "
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: 你觉得有什么没人教过、但应该知道的事？
+      placeholder: 为什么手机有 Wi-Fi 信号，却上不了网？
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: 什么情境让你想到它？
+  - type: textarea
+    id: sources
+    attributes:
+      label: 有没有资料或网站线索？（可选）

@@ -1,0 +1,20 @@
+name: 纠错或改善阅读
+description: 一个事实、链接或难懂的句子。
+title: "[纠错] "
+body:
+  - type: input
+    id: article
+    attributes:
+      label: 文章编号或链接
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: 哪里有问题？建议怎么改？
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: 原始资料或证据（如有）

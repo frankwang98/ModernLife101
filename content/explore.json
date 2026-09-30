@@ -1,0 +1,51 @@
+[
+  {
+    "icon": "✈️",
+    "title": "飞机正在飞往哪里",
+    "name": "Flightradar24",
+    "url": "https://www.flightradar24.com/",
+    "note": "航班位置与轨迹；覆盖、延迟和部分功能因数据源与套餐而异。"
+  },
+  {
+    "icon": "🚢",
+    "title": "商船怎样连接大陆",
+    "name": "MarineTraffic",
+    "url": "https://www.marinetraffic.com/",
+    "note": "AIS 船舶地图；部分数据需登录或付费，注意位置更新时间。"
+  },
+  {
+    "icon": "🛰️",
+    "title": "今晚头顶有什么",
+    "name": "Heavens-Above",
+    "url": "https://www.heavens-above.com/",
+    "note": "轨道预测与可见过境；先设置地点，并非实时观测。"
+  },
+  {
+    "icon": "🌋",
+    "title": "地球刚刚动了哪里",
+    "name": "USGS",
+    "url": "https://earthquake.usgs.gov/earthquakes/map/",
+    "note": "近实时地震信息；震级会修订，筛选门槛影响显示。"
+  },
+  {
+    "icon": "🌩️",
+    "title": "雷暴正在何处闪烁",
+    "name": "LightningMaps",
+    "url": "https://www.lightningmaps.org/",
+    "note": "社区雷电观测；覆盖不完整，不替代官方预警。"
+  },
+  {
+    "icon": "🌊",
+    "title": "风与洋流如何流动",
+    "name": "earth.nullschool",
+    "url": "https://earth.nullschool.net/",
+    "note": "模式与观测数据可视化；查看图层时间，不是全球现场直播。"
+  },
+  {
+    "icon": "🌐",
+    "title": "跨洋网络的实体路线",
+    "name": "Submarine Cable Map",
+    "url": "https://www.submarinecablemap.com/",
+    "note": "海底光缆地图；展示线路，不展示实时消息流。"
+  }
+]

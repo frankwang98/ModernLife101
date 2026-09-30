@@ -1,0 +1,362 @@
+[
+  {
+    "id": "001",
+    "title": "为什么输入一个网址就能打开网站？",
+    "summary": "网址是入口，DNS 帮你找到地址，网络协议负责把内容送回来。",
+    "world": "internet",
+    "minutes": 2,
+    "related": [
+      "002",
+      "003"
+    ],
+    "verified": "2026-09-30"
+  },
+  {
+    "id": "002",
+    "title": "为什么家里的电脑很难从外面直接访问？",
+    "summary": "家里能上网，不等于外界能主动找到你的电脑。",
+    "world": "internet",
+    "minutes": 2,
+    "related": [
+      "004",
+      "012"
+    ],
+    "verified": "2026-09-30"
+  },
+  {
+    "id": "003",
+    "title": "一条消息是怎么跨越半个地球的？",
+    "summary": "跨洋 Internet 很大一部分依靠海底光缆，而不是卫星。",
+    "world": "internet",
+    "minutes": 2,
+    "related": [
+      "019",
+      "021"
+    ],
+    "verified": "2026-09-30"
+  },
+  {
+    "id": "004",
+    "title": "Wi-Fi 有信号，为什么还是上不了网？",
+    "summary": "Wi-Fi 表示你连上了附近的无线网络，不保证这个网络连上 Internet。",
+    "world": "communication",
+    "minutes": 2,
+    "related": [
+      "001",
+      "005"
+    ],
+    "verified": "2026-09-30"
+  },
+  {
+    "id": "005",
+    "title": "手机换了地方，电话怎么还能找到你？",
+    "summary": "移动网络会维护你的注册位置，把呼叫或数据送到当前服务区域。",
+    "world": "communication",
+    "minutes": 2,
+    "related": [
+      "006",
+      "022"
+    ],
+    "verified": "2026-09-30"
+  },
+  {
+    "id": "006",
+    "title": "eSIM 为什么不需要那张小卡？",
+    "summary": "eSIM 把运营商配置装进设备内的安全组件，而不是插入可拆卸卡片。",
+    "world": "communication",
+    "minutes": 2,
+    "related": [
+      "005",
+      "013"
+    ],
+    "verified": "2026-09-30"
+  },
+  {
+    "id": "007",
+    "title": "为什么银行卡到了国外还能刷？",
+    "summary": "商户和你的银行可以通过支付网络交换授权与清算信息。",
+    "world": "money",
+    "minutes": 2,
+    "related": [
+      "008",
+      "009"
+    ],
+    "verified": "2026-09-30"
+  },
+  {
+    "id": "008",
+    "title": "Apple Pay 为什么不用把真实卡号交给商户？",
+    "summary": "支付令牌让交易可以使用替代标识，而不是直接暴露原始卡号。",
+    "world": "money",
+    "minutes": 2,
+    "related": [
+      "015",
+      "014"
+    ],
+    "verified": "2026-09-30"
+  },
+  {
+    "id": "009",
+    "title": "SWIFT 是把钱运到国外的管道吗？",
+    "summary": "SWIFT 主要提供金融报文网络，资金结算依靠参与银行和相关体系。",
+    "world": "money",
+    "minutes": 2,
+    "related": [
+      "020",
+      "007"
+    ],
+    "verified": "2026-09-30"
+  },
+  {
+    "id": "010",
+    "title": "云盘里的文件，究竟在哪里？",
+    "summary": "云是由实际机房、服务器、磁盘和网络提供的远程服务。",
+    "world": "cloud",
+    "minutes": 2,
+    "related": [
+      "011",
+      "018"
+    ],
+    "verified": "2026-09-30"
+  },
+  {
+    "id": "011",
+    "title": "同步为什么不等于备份？",
+    "summary": "同步让多处保持一致，备份让你能够回到之前的状态。",
+    "world": "cloud",
+    "minutes": 2,
+    "related": [
+      "017",
+      "012"
+    ],
+    "verified": "2026-09-30"
+  },
+  {
+    "id": "012",
+    "title": "网站停了，是不是数据库也丢了？",
+    "summary": "计算服务停止与数据丢失是两件事，但部署方式可能把它们绑在一起。",
+    "world": "cloud",
+    "minutes": 2,
+    "related": [
+      "010",
+      "011"
+    ],
+    "verified": "2026-09-30"
+  },
+  {
+    "id": "013",
+    "title": "手机丢了，你还能登录自己的账号吗？",
+    "summary": "登录恢复需要一条不依赖那部手机的备用路径。",
+    "world": "identity",
+    "minutes": 2,
+    "related": [
+      "014",
+      "015"
+    ],
+    "verified": "2026-09-30"
+  },
+  {
+    "id": "014",
+    "title": "为什么短信验证码并不是万能钥匙？",
+    "summary": "验证码证明某条认证路径暂时可用，不证明交易或网站一定可信。",
+    "world": "identity",
+    "minutes": 2,
+    "related": [
+      "015",
+      "029"
+    ],
+    "verified": "2026-09-30"
+  },
+  {
+    "id": "015",
+    "title": "Passkey 为什么可以不用记密码？",
+    "summary": "Passkey 用公钥密码学证明登录权限，服务端不需要保存同一个可复用密码。",
+    "world": "identity",
+    "minutes": 2,
+    "related": [
+      "013",
+      "008"
+    ],
+    "verified": "2026-09-30"
+  },
+  {
+    "id": "016",
+    "title": "照片为什么知道你在哪里拍的？",
+    "summary": "照片文件可能保存拍摄时间、设备信息和地理位置等元数据。",
+    "world": "digital-life",
+    "minutes": 2,
+    "related": [
+      "017",
+      "018"
+    ],
+    "verified": "2026-09-30"
+  },
+  {
+    "id": "017",
+    "title": "十年后的你，还能打开今天的视频吗？",
+    "summary": "文件留着、格式可读、内容可找到，三件事都要成立。",
+    "world": "digital-life",
+    "minutes": 2,
+    "related": [
+      "011",
+      "018"
+    ],
+    "verified": "2026-09-30"
+  },
+  {
+    "id": "018",
+    "title": "如果某个平台明天消失，你会失去什么？",
+    "summary": "平台退出的代价取决于你能否带走内容、联系人和访问权限。",
+    "world": "digital-life",
+    "minutes": 2,
+    "related": [
+      "010",
+      "030"
+    ],
+    "verified": "2026-09-30"
+  },
+  {
+    "id": "019",
+    "title": "飞机这么多，为什么很少相撞？",
+    "summary": "空中交通依靠规则、间隔、管制和机载系统共同保持分离。",
+    "world": "transportation",
+    "minutes": 2,
+    "related": [
+      "022",
+      "023"
+    ],
+    "verified": "2026-09-30"
+  },
+  {
+    "id": "020",
+    "title": "欧洲超市里的中国商品，经过了什么？",
+    "summary": "跨国商品背后是一条生产、运输、通关与分销链。",
+    "world": "transportation",
+    "minutes": 2,
+    "related": [
+      "021",
+      "003"
+    ],
+    "verified": "2026-09-30"
+  },
+  {
+    "id": "021",
+    "title": "全球船舶地图为什么会突然少一艘船？",
+    "summary": "船舶地图是观测数据的集合，不是完整、无延迟的世界镜像。",
+    "world": "transportation",
+    "minutes": 2,
+    "related": [
+      "020",
+      "024"
+    ],
+    "verified": "2026-09-30"
+  },
+  {
+    "id": "022",
+    "title": "GPS 为什么不需要联网也能定位？",
+    "summary": "接收卫星信号并计算位置，本身不要求连接 Internet。",
+    "world": "space",
+    "minutes": 2,
+    "related": [
+      "023",
+      "001"
+    ],
+    "verified": "2026-09-30"
+  },
+  {
+    "id": "023",
+    "title": "国际空间站为什么一直在掉，却掉不下来？",
+    "summary": "轨道运动可以理解为持续自由落体，同时横向运动让它不断错过地面。",
+    "world": "space",
+    "minutes": 2,
+    "related": [
+      "024",
+      "025"
+    ],
+    "verified": "2026-09-30"
+  },
+  {
+    "id": "024",
+    "title": "头顶有卫星，为什么你通常看不见？",
+    "summary": "能否看见取决于照明、亮度、角度和你的观察环境。",
+    "world": "space",
+    "minutes": 2,
+    "related": [
+      "023",
+      "027"
+    ],
+    "verified": "2026-09-30"
+  },
+  {
+    "id": "025",
+    "title": "为什么电插上就来，却很难大量存起来？",
+    "summary": "电力系统需要持续协调发电、负荷和储能，而不是简单打开一个水龙头。",
+    "world": "infrastructure",
+    "minutes": 2,
+    "related": [
+      "026",
+      "012"
+    ],
+    "verified": "2026-09-30"
+  },
+  {
+    "id": "026",
+    "title": "为什么数据中心要配 UPS？",
+    "summary": "UPS 为供电中断与切换提供缓冲，不是无限时长的独立电站。",
+    "world": "infrastructure",
+    "minutes": 2,
+    "related": [
+      "025",
+      "011"
+    ],
+    "verified": "2026-09-30"
+  },
+  {
+    "id": "027",
+    "title": "地震地图上的数字，代表你会摇多厉害吗？",
+    "summary": "震级描述地震规模，某地的摇晃强度还受距离、深度与地质影响。",
+    "world": "infrastructure",
+    "minutes": 2,
+    "related": [
+      "024",
+      "019"
+    ],
+    "verified": "2026-09-30"
+  },
+  {
+    "id": "028",
+    "title": "AI 为什么能一本正经地说错话？",
+    "summary": "生成流畅文本与验证事实，是两种不同能力。",
+    "world": "ai",
+    "minutes": 2,
+    "related": [
+      "029",
+      "030"
+    ],
+    "verified": "2026-09-30"
+  },
+  {
+    "id": "029",
+    "title": "AI Agent 与聊天机器人差在哪里？",
+    "summary": "Agent 通常还会调用工具、保存状态并推进任务。",
+    "world": "ai",
+    "minutes": 2,
+    "related": [
+      "028",
+      "014"
+    ],
+    "verified": "2026-09-30"
+  },
+  {
+    "id": "030",
+    "title": "把资料交给 AI，究竟交给了谁？",
+    "summary": "需要区分本地处理、服务端处理，以及工具调用到的第三方。",
+    "world": "ai",
+    "minutes": 2,
+    "related": [
+      "018",
+      "013"
+    ],
+    "verified": "2026-09-30"
+  }
+]
